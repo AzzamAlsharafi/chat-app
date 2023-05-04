@@ -1,6 +1,7 @@
 import { useState } from "react";
 import WelcomePage from "./components/WelcomePage";
 import { pb } from "./pocketbase";
+import HomePage from "./components/HomePage";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(pb.authStore.isValid);
@@ -9,7 +10,7 @@ export default function App() {
 
   return (
     <>
-      {isLoggedIn ? <div /> : <WelcomePage />}
+      {isLoggedIn ? <HomePage /> : <WelcomePage />}
     </>
   );
 }

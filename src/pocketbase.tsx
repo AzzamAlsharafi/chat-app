@@ -2,14 +2,14 @@ import PocketBase from "pocketbase";
 
 export const pb = new PocketBase("http://127.0.0.1:8090");
 
-// interface User {
-//   id: string;
-//   username: string;
-//   email: string;
-//   password: string;
-//   name: string;
-//   avatar: string;
-// }
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  name: string;
+  avatar: string;
+}
 
 interface NewUserProps {
   username: string;
