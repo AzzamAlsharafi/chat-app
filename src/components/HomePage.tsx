@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { User, pb } from "../pocketbase";
 import LoadingPage from "./LoadingPage";
+import UserHomePage from "./UserHomePage";
 
 export default function HomePage() {
   const [userData, setUserData] = useState<User | null>(null);
@@ -25,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-        {userData ? userData.name : <LoadingPage />}
+        {userData ? <UserHomePage user={userData} /> : <LoadingPage />}
     </>
   )
 }
