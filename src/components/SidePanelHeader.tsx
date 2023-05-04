@@ -28,10 +28,10 @@ export default function SidePanelHeader({onOpen} : SidePanelHeaderProps) {
             aria-label="open menu"
             icon={<FiMenu />}
           />
-          <Avatar m={3} name={user!.name} />
+          <Avatar m={2} name={user!.name} />
           <IconButton
             bg={"blue.200"}
-            m={3}
+            m={2}
             aria-label={"logout"}
             icon={<Icon as={RxExit} color={"blue.700"} w={5} h={5} />}
             onClick={Logout}
