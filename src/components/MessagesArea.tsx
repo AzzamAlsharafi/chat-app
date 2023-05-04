@@ -35,7 +35,7 @@ export default function MessagesArea({
   
     return (
     <>
-      <Flex direction={"column"} h={"100vh"}>
+      <Flex direction={"column"} h={"100%"} flex={1}>
         <Box bg={"blue.300"} w={1400} h={"100%"}>
           {messages.map((m) => (
             <MessageBubble user={user} message={m} />
@@ -43,7 +43,7 @@ export default function MessagesArea({
         </Box>
         <FormControl>
           <InputGroup>
-            <Input placeholder="Type a message" value={content} onChange={(e) => setContent(e.target.value)}/>
+            <Input placeholder="Type a message" bg={"white"} value={content} onChange={(e) => setContent(e.target.value)}/>
             <InputRightElement width="4.5rem">
               <IconButton
                 onClick={send}
