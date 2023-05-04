@@ -13,59 +13,44 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { Login, NewUser } from "../pocketbase";
+import { Login } from "../pocketbase";
 import { InputField, InputPasswordField } from "./InputField";
 
-export default function SignUpButton() {
+export default function LogInButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isPassVisible, setPassVisible] = useBoolean();
 
   const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-
-  const createUser = () => {
-    NewUser({ username, email, password, passwordConfirm, name });
+  
+  const loginUser = () => {
     Login(username, password);
+    onClose()
   };
 
   return (
     <>
-      <Button rounded={"full"} px={6} onClick={onOpen}>
-        Sign up
+      <Button rounded={"full"} px={6} onClick={onOpen} colorScheme="blue">
+        Log In
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
+          <ModalHeader>Log In</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={5}>
               <InputField
-                title="Username"
+                title="Username / Email"
                 value={username}
                 setValue={setUsername}
               />
-
-              <InputField title="Full Name" value={name} setValue={setName} />
-
-              <InputField title="Email" value={email} setValue={setEmail} />
 
               <InputPasswordField
                 title="Password"
                 value={password}
                 setValue={setPassword}
-                isVisible={isPassVisible}
-                toggleVisible={setPassVisible.toggle}
-              />
-
-              <InputPasswordField
-                title="Confirm Password"
-                value={passwordConfirm}
-                setValue={setPasswordConfirm}
                 isVisible={isPassVisible}
                 toggleVisible={setPassVisible.toggle}
               />
@@ -76,9 +61,9 @@ export default function SignUpButton() {
                   px={20}
                   rounded={"full"}
                   colorScheme="blue"
-                  onClick={createUser}
+                  onClick={loginUser}
                 >
-                  Sign up
+                  Log In
                 </Button>
               </Center>
             </Stack>

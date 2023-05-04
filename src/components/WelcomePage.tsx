@@ -1,5 +1,6 @@
-import { Button, Text, Heading, Stack } from "@chakra-ui/react";
+import { Text, Heading, Stack } from "@chakra-ui/react";
 import SignUpButton from "./SignUpButton";
+import LogInButton from "./LogInButton";
 
 export default function WelcomePage() {
   return (
@@ -16,13 +17,7 @@ export default function WelcomePage() {
           Log in, or register a new account.
         </Text>
         <Stack spacing={6} direction={"row"}>
-          <Button
-            rounded={"full"}
-            px={6}
-            colorScheme={"blue"}
-          >
-            Log in
-          </Button>
+          <LogInButton />
           <SignUpButton />
         </Stack>
       </Stack>
