@@ -9,17 +9,15 @@ interface AppState {
   usersList: User[] | null,
   messages: Message[] | null,
   selectedUser: string,
-  selectedMessages: Message[]
 }
 
 // Define the initial state using that type
 const initialState: AppState = {
-    isLoggedIn: pb.authStore.isValid,
-    user: null,
-    usersList: null,
-    messages: null,
-    selectedUser: '',
-    selectedMessages: []
+  isLoggedIn: false,
+  user: null,
+  usersList: null,
+  messages: null,
+  selectedUser: '',
 }
 
 export const appSlice = createSlice({
@@ -36,36 +34,35 @@ export const appSlice = createSlice({
       state.messages = action.payload.messagesData
     },
     logOut: state => {
-        state.isLoggedIn = false,
+      state.isLoggedIn = false,
         state.user = null
-        state.usersList = null
-        state.messages = null
-        state.selectedUser = ''
-        state.selectedMessages = []
+      state.usersList = null
+      state.messages = null
+      state.selectedUser = ''
     },
     selectUser: (state, action: PayloadAction<string>) => {
-        const select = action.payload;
-        state.selectedUser = select;
-        
-        if (state.messages){
-            state.selectedMessages = state.messages.filter((m) => m.sender === select || m.receiver === select)
-        }
+      const select = action.payload;
+      state.selectedUser = select;
     },
-    addMessages: (state, action: PayloadAction<Message[]>) => {
-        if (state.messages){
-            state.messages.push.apply(action.payload)
-        }
-    }
+    addMessage: (state, action: PayloadAction<Message>) => {
+      if (state.messages) {
+        state.messages.push(action.payload)
+      }
+    },
+    addUser: (state, action: PayloadAction<User>) => {
+      if (state.usersList) {
+        state.usersList.push(action.payload)
+      }
+    },
   }
 })
 
-export const { logIn, loadData, logOut, selectUser, addMessages } = appSlice.actions
+export const { logIn, loadData, logOut, selectUser, addMessage, addUser } = appSlice.actions
 
 export const loggedInSelector = (state: RootState) => state.app.isLoggedIn;
 export const userSelector = (state: RootState) => state.app.user;
 export const usersListSelector = (state: RootState) => state.app.usersList;
 export const messagesSelector = (state: RootState) => state.app.messages;
 export const selectedUserSelector = (state: RootState) => state.app.selectedUser;
-export const selectedMessagesSelector = (state: RootState) => state.app.selectedMessages;
 
 export default appSlice.reducer

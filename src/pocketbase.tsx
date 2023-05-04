@@ -1,4 +1,6 @@
-import PocketBase from "pocketbase";
+import PocketBase, { RecordSubscription } from "pocketbase";
+import { AppDispatch } from "./redux/store";
+import { addMessage, addUser } from "./redux/appSlice";
 
 export const pb = new PocketBase("http://127.0.0.1:8090");
 
@@ -10,11 +12,11 @@ export interface User {
 }
 
 export interface Message {
-  id: string,
-  content: string,
-  sender: string,
-  receiver: string,
-  created: Date
+  id: string;
+  content: string;
+  sender: string;
+  receiver: string;
+  created: Date;
 }
 
 interface NewUserProps {
@@ -26,9 +28,9 @@ interface NewUserProps {
 }
 
 export interface LoadData {
-  userData: User,
-  usersListData: User[],
-  messagesData: Message[]
+  userData: User;
+  usersListData: User[];
+  messagesData: Message[];
 }
 
 export async function NewUser(data: NewUserProps) {
@@ -45,6 +47,26 @@ export async function Logout() {
   pb.authStore.clear();
 }
 
-export async function SendMessage(content: string, sender: string, receiver: string){
-  pb.collection("messages").create({content, sender, receiver})
+export async function SendMessage(
+  content: string,
+  sender: string,
+  receiver: string
+) {
+  pb.collection("messages").create({ content, sender, receiver });
+}
+
+export async function Subscribe(dispatch: AppDispatch) {  
+  pb.collection("users").subscribe("*", function (e: RecordSubscription<User>) {
+    dispatch(addUser(e.record))
+  });
+  
+  pb.collection("messages").subscribe("*", function (e: RecordSubscription<Message>) {
+    dispatch(addMessage(e.record))
+  });
+}
+
+export async function Unsubscribe(){
+  pb.collection('users').unsubscribe();
+
+  pb.collection('messages').unsubscribe();
 }

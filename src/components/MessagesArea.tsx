@@ -14,7 +14,7 @@ import { AiOutlineSend } from "react-icons/ai";
 import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import {
-  selectedMessagesSelector,
+  messagesSelector,
   selectedUserSelector,
   userSelector,
 } from "../redux/appSlice";
@@ -24,7 +24,9 @@ export default function MessagesArea() {
 
   const user = useAppSelector(userSelector);
   const selectedUser = useAppSelector(selectedUserSelector);
-  const selectedMessages = useAppSelector(selectedMessagesSelector);
+  const messages = useAppSelector(messagesSelector);
+
+  const selectedMessages = messages!.filter((m) => m.sender === selectedUser || m.receiver === selectedUser);
 
   const send = () => {
     if (content) {
@@ -38,7 +40,7 @@ export default function MessagesArea() {
       <Flex direction={"column"} h={"100%"} flex={1}>
         <Box bg={"blue.300"} w={1400} h={"100%"}>
           {selectedMessages.map((m) => (
-            <MessageBubble message={m} />
+            <MessageBubble key={m.id} message={m} />
           ))}
         </Box>
         <FormControl

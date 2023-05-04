@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Message, User, pb } from "../pocketbase";
+import { Message, Subscribe, Unsubscribe, User, pb } from "../pocketbase";
 import LoadingPage from "./LoadingPage";
 import UserHomePage from "./UserHomePage";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -28,6 +28,12 @@ export default function HomePage() {
       };
 
       fetchData();
+
+      Subscribe(dispatch);
+
+      return () => {
+        Unsubscribe();
+      } 
     } else {
         pb.authStore.clear();
     }

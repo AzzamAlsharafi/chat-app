@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import WelcomePage from "./components/WelcomePage";
 import { pb } from "./pocketbase";
 import HomePage from "./components/HomePage";
@@ -9,6 +9,14 @@ import { logIn, logOut, loggedInSelector } from "./redux/appSlice";
 export default function App() {
   const isLoggedIn = useAppSelector(loggedInSelector);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (pb.authStore.isValid) {
+      dispatch(logIn());
+    } else {
+      dispatch(logOut());
+    }
+  }, [dispatch]);
 
   pb.authStore.onChange(() => {
     if (pb.authStore.isValid) {
