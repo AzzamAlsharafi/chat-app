@@ -12,7 +12,7 @@ import { SendMessage } from "../pocketbase";
 import MessageBubble from "./MessageBubble";
 import { AiOutlineSend } from "react-icons/ai";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import {
   selectedMessagesSelector,
   selectedUserSelector,
@@ -27,8 +27,10 @@ export default function MessagesArea() {
   const selectedMessages = useAppSelector(selectedMessagesSelector);
 
   const send = () => {
-    SendMessage(content, user!.username, selectedUser);
-    setContent("");
+    if (content) {
+      SendMessage(content, user!.username, selectedUser);
+      setContent("");
+    }
   };
 
   return (
@@ -39,7 +41,13 @@ export default function MessagesArea() {
             <MessageBubble message={m} />
           ))}
         </Box>
-        <FormControl>
+        <FormControl
+          as="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            send();
+          }}
+        >
           <InputGroup>
             <Input
               placeholder="Type a message"
@@ -49,7 +57,7 @@ export default function MessagesArea() {
             />
             <InputRightElement width="4.5rem">
               <IconButton
-                onClick={send}
+                type="submit"
                 h="7"
                 size="sm"
                 icon={<Icon as={AiOutlineSend} />}
