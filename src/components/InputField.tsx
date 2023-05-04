@@ -7,12 +7,17 @@ import {
 interface InputFieldProps {
   title: string;
   value: string;
+  matchRe?: RegExp; 
+  minimum: number;
   setValue: (value: string) => void;
 }
 
-export default function InputField({ title, value, setValue }: InputFieldProps) {
+export default function InputField({ title, value, matchRe, minimum, setValue }: InputFieldProps) {
+  const isMatch = !matchRe || value.toLowerCase().match(matchRe);
+  const isInvalid = minimum > value.length || !isMatch;
+  
   return (
-    <FormControl>
+    <FormControl isInvalid={isInvalid}>
       <FormLabel htmlFor={title}>{title}</FormLabel>
       <Input
         id={title}

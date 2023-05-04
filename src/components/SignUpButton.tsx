@@ -31,6 +31,8 @@ export default function SignUpButton() {
     NewUser({ username, email, password, passwordConfirm, name });
   };
 
+  const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
   return (
     <>
       <Button rounded={"full"} px={6} onClick={onOpen}>
@@ -47,16 +49,29 @@ export default function SignUpButton() {
               <InputField
                 title="Username"
                 value={username}
+                minimum={3}
                 setValue={setUsername}
               />
 
-              <InputField title="Full Name" value={name} setValue={setName} />
+              <InputField
+                title="Full Name"
+                value={name}
+                minimum={1}
+                setValue={setName}
+              />
 
-              <InputField title="Email" value={email} setValue={setEmail} />
+              <InputField
+                title="Email"
+                value={email}
+                minimum={1}
+                matchRe={re}
+                setValue={setEmail}
+              />
 
               <InputPasswordField
                 title="Password"
                 value={password}
+                minimum={8}
                 setValue={setPassword}
                 isVisible={isPassVisible}
                 toggleVisible={setPassVisible.toggle}
@@ -65,6 +80,8 @@ export default function SignUpButton() {
               <InputPasswordField
                 title="Confirm Password"
                 value={passwordConfirm}
+                minimum={8}
+                match={password}
                 setValue={setPasswordConfirm}
                 isVisible={isPassVisible}
                 toggleVisible={setPassVisible.toggle}
