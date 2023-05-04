@@ -23,7 +23,7 @@ export default function SidePanel() {
 
   return (
     <>
-      <Flex direction="column" h={"100%"} bg={"blue.200"}>
+      <Flex direction="column" h={"100%"} bg={"blue.200"} overflow={"auto"}>
         <SidePanelHeader />
         {usersList && messages ? (
           sortUsers(usersList, messages).map((u) => {
