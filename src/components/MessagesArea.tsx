@@ -11,7 +11,7 @@ import {
 import { SendMessage } from "../pocketbase";
 import MessageBubble from "./MessageBubble";
 import { AiOutlineSend } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import {
   messagesSelector,
@@ -26,7 +26,17 @@ export default function MessagesArea() {
   const selectedUser = useAppSelector(selectedUserSelector);
   const messages = useAppSelector(messagesSelector);
 
-  const selectedMessages = messages!.filter((m) => m.sender === selectedUser || m.receiver === selectedUser);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
+  }, [selectedUser, messages]);
+
+  const selectedMessages = messages!.filter(
+    (m) => m.sender === selectedUser || m.receiver === selectedUser
+  );
 
   const send = () => {
     if (content) {
@@ -38,7 +48,7 @@ export default function MessagesArea() {
   return (
     <>
       <Flex direction={"column"} flex={1}>
-        <Box bg={"blue.300"} flex={1} overflow={"auto"}>
+        <Box ref={boxRef} bg={"blue.300"} flex={1} overflow={"auto"}>
           {selectedMessages.map((m) => (
             <MessageBubble key={m.id} message={m} />
           ))}

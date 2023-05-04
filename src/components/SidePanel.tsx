@@ -29,7 +29,7 @@ export default function SidePanel() {
           sortUsers(usersList, messages).map((u) => {
             const latest = getLatestMessage(u.username, messages);
             const [subtitle, time] = latest ? 
-              [latest.content, format(parseISO(latest.created), "h:mm bb")]
+              [latest.content, format(parseISO(latest.created), "h:mm aa")]
             : ["", ""];
 
             return (
