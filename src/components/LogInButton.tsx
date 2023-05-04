@@ -44,6 +44,7 @@ export default function LogInButton() {
             <Stack spacing={5}>
               <InputField
                 title="Username / Email"
+                minimum={0}
                 value={username}
                 setValue={setUsername}
               />
@@ -51,6 +52,7 @@ export default function LogInButton() {
               <InputPasswordField
                 title="Password"
                 value={password}
+                minimum={0}
                 setValue={setPassword}
                 isVisible={isPassVisible}
                 toggleVisible={setPassVisible.toggle}
