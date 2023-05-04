@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { LogInData, Message, pb, SendMessage, User } from '../pocketbase'
-import { act } from 'react-dom/test-utils'
+import { LoadData, Message, pb, User } from '../pocketbase'
+import { RootState } from './store'
 
 // Define a type for the slice state
 interface AppState {
@@ -27,15 +27,19 @@ export const appSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    logIn: (state, action: PayloadAction<LogInData>) => {
-      state.isLoggedIn = true,
-      state.user = action.payload.user
-      state.usersList = action.payload.usersList
-      state.messages = action.payload.messages
+    logIn: state => {
+      state.isLoggedIn = true
+    },
+    loadData: (state, action: PayloadAction<LoadData>) => {
+      state.user = action.payload.userData
+      state.usersList = action.payload.usersListData
+      state.messages = action.payload.messagesData
     },
     logOut: state => {
         state.isLoggedIn = false,
         state.user = null
+        state.usersList = null
+        state.messages = null
     },
     selectUser: (state, action: PayloadAction<string>) => {
         const select = action.payload;
@@ -53,6 +57,13 @@ export const appSlice = createSlice({
   }
 })
 
-export const { logIn, logOut, selectUser, addMessages } = appSlice.actions
+export const { logIn, loadData, logOut, selectUser, addMessages } = appSlice.actions
+
+export const loggedInSelector = (state: RootState) => state.app.isLoggedIn;
+export const userSelector = (state: RootState) => state.app.user;
+export const usersListSelector = (state: RootState) => state.app.usersList;
+export const messagesSelector = (state: RootState) => state.app.messages;
+export const selectedUserSelector = (state: RootState) => state.app.selectedUser;
+export const selectedMessagesSelector = (state: RootState) => state.app.selectedMessages;
 
 export default appSlice.reducer

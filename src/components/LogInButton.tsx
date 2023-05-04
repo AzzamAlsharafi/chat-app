@@ -14,7 +14,8 @@ import {
 import { useState } from "react";
 
 import { Login } from "../pocketbase";
-import { InputField, InputPasswordField } from "./InputField";
+import InputField from "./InputField";
+import InputPasswordField from "./InputPasswordField";
 
 export default function LogInButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -5,6 +5,7 @@ interface NameCardProps {
   subtitle: string;
   time: string;
   iconSrc: string;
+  selected: boolean,
   onClick: (selected: string) => void;
 }
 
@@ -13,6 +14,7 @@ export default function NameCard({
   subtitle,
   time,
   iconSrc,
+  selected,
   onClick,
 }: NameCardProps) {
   return (
@@ -20,8 +22,8 @@ export default function NameCard({
       <Flex
         w={80}
         direction={"column"}
-        bg={"blue.50"}
-        _hover={{ bg: "blue.100" }}
+        bg={selected ? "blue.300" : "blue.50"}
+        _hover={{ bg: selected ? "blue.300" : "blue.100" }}
         onClick={() => onClick(subtitle)}
       >
         <Flex direction="row" justify={"space-between"}>

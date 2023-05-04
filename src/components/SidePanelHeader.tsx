@@ -1,12 +1,12 @@
-import { Avatar, Box, Flex, Heading, Icon, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Icon, IconButton } from "@chakra-ui/react";
 import { RxExit } from "react-icons/rx";
 import { Logout } from "../pocketbase";
+import { useAppSelector } from "../redux/hooks";
+import { userSelector } from "../redux/appSlice";
 
-interface SidePanelHeaderProps {
-  name: string;
-}
+export default function SidePanelHeader() {
+  const user = useAppSelector(userSelector);
 
-export default function SidePanelHeader({ name }: SidePanelHeaderProps) {
   return (
     <>
       <Box>
@@ -16,7 +16,7 @@ export default function SidePanelHeader({ name }: SidePanelHeaderProps) {
           justifyContent="space-between"
           align="center"
         >
-          <Avatar m={3} name={name}/>
+          <Avatar m={3} name={user!.name}/>
           <IconButton
             bg={"blue.200"}
             m={3}

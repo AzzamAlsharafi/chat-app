@@ -25,10 +25,10 @@ interface NewUserProps {
   name: string;
 }
 
-export interface LogInData {
-  user: User,
-  usersList: User[],
-  messages: Message[]
+export interface LoadData {
+  userData: User,
+  usersListData: User[],
+  messagesData: Message[]
 }
 
 export async function NewUser(data: NewUserProps) {

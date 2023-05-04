@@ -1,15 +1,18 @@
-import { Box, Card, CardBody, CardFooter, Text } from "@chakra-ui/react";
+import { Card, CardBody, Text } from "@chakra-ui/react";
 import { Message } from "../pocketbase";
+import { userSelector } from "../redux/appSlice";
+import { useAppSelector } from "../redux/hooks";
 
 interface MessageBubbleProps {
-  user: string;
   message: Message;
 }
 
-export default function MessageBubble({ user, message }: MessageBubbleProps) {
+export default function MessageBubble({ message }: MessageBubbleProps) {
+  const user = useAppSelector(userSelector);
+
   return (
     <>
-      <Card bg={user === message.sender ? "blue.200" : "white"} w={"max-content"} m={2}>
+      <Card bg={user!.username === message.sender ? "blue.200" : "white"} w={"max-content"} m={2}>
         <CardBody p={2}>
           <Text>{message.content}</Text>
         </CardBody>

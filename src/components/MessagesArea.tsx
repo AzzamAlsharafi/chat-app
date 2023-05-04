@@ -1,49 +1,52 @@
 import {
   Box,
-  Container,
   Flex,
   FormControl,
-  Heading,
   Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { Message, SendMessage } from "../pocketbase";
+import { SendMessage } from "../pocketbase";
 import MessageBubble from "./MessageBubble";
 import { AiOutlineSend } from "react-icons/ai";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import {
+  selectedMessagesSelector,
+  selectedUserSelector,
+  userSelector,
+} from "../redux/appSlice";
 
-interface MessagesAreaProps {
-  user: string;
-  other: string;
-  messages: Message[];
-}
+export default function MessagesArea() {
+  const [content, setContent] = useState("");
 
-export default function MessagesArea({
-  user,
-  other,
-  messages,
-}: MessagesAreaProps) {
-    const [content, setContent] = useState('');
+  const user = useAppSelector(userSelector);
+  const selectedUser = useAppSelector(selectedUserSelector);
+  const selectedMessages = useAppSelector(selectedMessagesSelector);
 
   const send = () => {
-    SendMessage(content, user, other);
-    setContent('');
-  }
-  
-    return (
+    SendMessage(content, user!.username, selectedUser);
+    setContent("");
+  };
+
+  return (
     <>
       <Flex direction={"column"} h={"100%"} flex={1}>
         <Box bg={"blue.300"} w={1400} h={"100%"}>
-          {messages.map((m) => (
-            <MessageBubble user={user} message={m} />
+          {selectedMessages.map((m) => (
+            <MessageBubble message={m} />
           ))}
         </Box>
         <FormControl>
           <InputGroup>
-            <Input placeholder="Type a message" bg={"white"} value={content} onChange={(e) => setContent(e.target.value)}/>
+            <Input
+              placeholder="Type a message"
+              bg={"white"}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
             <InputRightElement width="4.5rem">
               <IconButton
                 onClick={send}
