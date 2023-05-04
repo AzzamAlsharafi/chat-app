@@ -37,8 +37,8 @@ export default function MessagesArea() {
 
   return (
     <>
-      <Flex direction={"column"} h={"100%"} flex={1}>
-        <Box bg={"blue.300"} w={1400} h={"100%"}>
+      <Flex direction={"column"} flex={1}>
+        <Box bg={"blue.300"} flex={1} overflow={"auto"}>
           {selectedMessages.map((m) => (
             <MessageBubble key={m.id} message={m} />
           ))}

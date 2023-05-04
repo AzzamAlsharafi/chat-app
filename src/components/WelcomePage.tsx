@@ -1,4 +1,4 @@
-import { Text, Heading, Stack, Center, AbsoluteCenter } from "@chakra-ui/react";
+import { Text, Heading, Stack, AbsoluteCenter } from "@chakra-ui/react";
 import SignUpButton from "./SignUpButton";
 import LogInButton from "./LogInButton";
 
