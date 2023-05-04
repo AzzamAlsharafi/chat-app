@@ -14,11 +14,14 @@
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
+    "@redux-devtools/core": "^3.13.1",
+    "@reduxjs/toolkit": "^1.9.5",
     "framer-motion": "^10.12.7",
     "pocketbase": "^0.14.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

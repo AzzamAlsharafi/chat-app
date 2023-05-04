@@ -25,6 +25,12 @@ interface NewUserProps {
   name: string;
 }
 
+export interface LogInData {
+  user: User,
+  usersList: User[],
+  messages: Message[]
+}
+
 export async function NewUser(data: NewUserProps) {
   await pb.collection("users").create(data);
 
