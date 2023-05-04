@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <>
-      <Center h={"100vh"} w="100vw" bg={"white"}>
+      <Center h={"100vh"} w="100vw" bg={"gray.500"}>
         <Flex h={"100vh"} w="100vw" maxH={"900"} maxW={"1800"}>
           {isLoggedIn ? <HomePage /> : <WelcomePage />}
         </Flex>

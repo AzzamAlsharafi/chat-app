@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import NameCard from "./NameCard";
 import SidePanelHeader from "./SidePanelHeader";
 
@@ -23,31 +23,28 @@ export default function SidePanel() {
 
   return (
     <>
-      <Flex direction="column" h={"100%"} bg={"blue.200"} overflow={"auto"}>
-        <SidePanelHeader />
-        {usersList && messages ? (
-          sortUsers(usersList, messages).map((u) => {
-            const latest = getLatestMessage(u.username, messages);
-            const [subtitle, time] = latest ? 
-              [latest.content, format(parseISO(latest.created), "h:mm aa")]
+      {usersList && messages ? (
+        sortUsers(usersList, messages).map((u) => {
+          const latest = getLatestMessage(u.username, messages);
+          const [subtitle, time] = latest
+            ? [latest.content, format(parseISO(latest.created), "h:mm aa")]
             : ["", ""];
 
-            return (
-              <NameCard
-                key={u.username}
-                title={u.name}
-                subtitle={subtitle}
-                time={time}
-                iconSrc={"src"}
-                selected={selectedUser === u.username}
-                onClick={() => onSelect(u.username)}
-              />
-            );
-          })
-        ) : (
-          <></>
-        )}
-      </Flex>
+          return (
+            <NameCard
+              key={u.username}
+              title={u.name}
+              subtitle={subtitle}
+              time={time}
+              iconSrc={"src"}
+              selected={selectedUser === u.username}
+              onClick={() => onSelect(u.username)}
+            />
+          );
+        })
+      ) : (
+        <></>
+      )}
     </>
   );
 }
