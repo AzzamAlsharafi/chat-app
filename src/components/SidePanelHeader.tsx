@@ -1,12 +1,12 @@
-import { Avatar, Box, Flex, Icon, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading, Icon, IconButton } from "@chakra-ui/react";
 import { RxExit } from "react-icons/rx";
 import { Logout } from "../pocketbase";
 
-interface SidePanelHeaderProps{
-  name: string
+interface SidePanelHeaderProps {
+  name: string;
 }
 
-export default function SidePanelHeader({name}: SidePanelHeaderProps) {
+export default function SidePanelHeader({ name }: SidePanelHeaderProps) {
   return (
     <>
       <Box>

@@ -5,6 +5,7 @@ interface NameCardProps {
   subtitle: string;
   time: string;
   iconSrc: string;
+  onClick: (selected: string) => void;
 }
 
 export default function NameCard({
@@ -12,10 +13,17 @@ export default function NameCard({
   subtitle,
   time,
   iconSrc,
+  onClick,
 }: NameCardProps) {
   return (
     <>
-      <Flex w={80}  direction={"column"} bg={"blue.50"} _hover={{bg: "blue.100"}}>
+      <Flex
+        w={80}
+        direction={"column"}
+        bg={"blue.50"}
+        _hover={{ bg: "blue.100" }}
+        onClick={() => onClick(subtitle)}
+      >
         <Flex direction="row" justify={"space-between"}>
           <Flex>
             <Avatar name={title} src={iconSrc} m={3} size="md" bg="red.500" />

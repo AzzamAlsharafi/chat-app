@@ -1,104 +1,27 @@
 import { Flex } from "@chakra-ui/react";
 import NameCard from "./NameCard";
 import SidePanelHeader from "./SidePanelHeader";
-
-const users = [
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Mohammed Ahmed",
-    subtitle: ".",
-    time: "6:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Mohammed Ahmed",
-    subtitle: ".",
-    time: "6:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Mohammed Ahmed",
-    subtitle: ".",
-    time: "6:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Mohammed Ahmed",
-    subtitle: ".",
-    time: "6:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Azzam Alsharafi",
-    subtitle: "Hello, good morning",
-    time: "4:00pm",
-    iconSrc: "",
-  },
-  {
-    title: "Mohammed Ahmed",
-    subtitle: ".",
-    time: "6:00pm",
-    iconSrc: "",
-  },
-];
+import { User } from "../pocketbase";
 
 interface SidePanelProps{
-  name: string
+  name: string,
+  usersList: User[],
+  onSelect: (selected: string) => void
 }
 
-export default function SidePanel({name}: SidePanelProps) {
+export default function SidePanel({name, usersList, onSelect}: SidePanelProps) {
   return (
     <>
       <Flex direction="column">
         <SidePanelHeader name={name}/>
-        {users.map((u) => (
+        {usersList.map((u) => (
           <NameCard
-            key={u.title}
-            title={u.title}
-            subtitle={u.subtitle}
-            time={u.time}
-            iconSrc={u.iconSrc}
+            key={u.username}
+            title={u.name}
+            subtitle={u.username}
+            time={"6:00pm"}
+            iconSrc={"src"}
+            onClick={onSelect}
           />
         ))}
       </Flex>
