@@ -37,6 +37,14 @@ export async function NewUser(data: NewUserProps) {
   await pb.collection("users").create(data);
 
   await pb.collection("users").requestVerification(data.email);
+
+  await Login(data.username, data.password)
+
+  await pb.collection("users").create(data);
+
+  await pb.collection("users").requestVerification(data.email);
+
+  await Login(data.username, data.password)
 }
 
 export async function Login(username_email: string, password: string) {

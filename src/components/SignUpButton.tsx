@@ -29,7 +29,6 @@ export default function SignUpButton() {
 
   const createUser = () => {
     NewUser({ username, email, password, passwordConfirm, name });
-    Login(username, password);
   };
 
   return (
