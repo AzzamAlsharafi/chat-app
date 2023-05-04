@@ -28,3 +28,7 @@ export async function NewUser(data: NewUserProps) {
 export async function Login(username_email: string, password: string) {
   await pb.collection("users").authWithPassword(username_email, password);
 }
+
+export async function Logout() {
+  pb.authStore.clear();
+}
