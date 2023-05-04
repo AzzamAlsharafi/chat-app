@@ -40,6 +40,8 @@ export const appSlice = createSlice({
         state.user = null
         state.usersList = null
         state.messages = null
+        state.selectedUser = ''
+        state.selectedMessages = []
     },
     selectUser: (state, action: PayloadAction<string>) => {
         const select = action.payload;
