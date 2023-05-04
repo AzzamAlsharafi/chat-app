@@ -16,7 +16,7 @@ export interface Message {
   content: string;
   sender: string;
   receiver: string;
-  created: Date;
+  created: string;
 }
 
 interface NewUserProps {

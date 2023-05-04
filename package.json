@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.10.8",
     "@redux-devtools/core": "^3.13.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "date-fns": "^2.30.0",
     "framer-motion": "^10.12.7",
     "pocketbase": "^0.14.3",
     "react": "^18.2.0",

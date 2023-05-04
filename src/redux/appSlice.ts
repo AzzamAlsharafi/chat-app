@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { LoadData, Message, pb, User } from '../pocketbase'
+import { LoadData, Message, User } from '../pocketbase'
 import { RootState } from './store'
 
 // Define a type for the slice state
