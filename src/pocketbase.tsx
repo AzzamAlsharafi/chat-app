@@ -2,7 +2,7 @@ import PocketBase, { RecordSubscription } from "pocketbase";
 import { AppDispatch } from "./redux/store";
 import { addMessage, addUser } from "./redux/appSlice";
 
-export const pb = new PocketBase("http://127.0.0.1:8090");
+export const pb = new PocketBase("http://localhost:8090");
 
 export interface User {
   id: string;

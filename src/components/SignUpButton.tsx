@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { Login, NewUser } from "../pocketbase";
+import { NewUser } from "../pocketbase";
 import InputField from "./InputField";
 import InputPasswordField from "./InputPasswordField";
 

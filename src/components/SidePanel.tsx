@@ -1,6 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
 import NameCard from "./NameCard";
-import SidePanelHeader from "./SidePanelHeader";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {

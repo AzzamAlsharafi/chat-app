@@ -1,7 +1,5 @@
 import {
   Box,
-  Drawer,
-  DrawerContent,
   Flex,
   useDisclosure,
 } from "@chakra-ui/react";
