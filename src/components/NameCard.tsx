@@ -28,7 +28,7 @@ export default function NameCard({
       >
         <Flex direction="row" justify={"space-between"}>
           <Flex>
-            <Avatar name={title} src={iconSrc} m={3} size="md" bg="red.500" />
+            <Avatar name={title} src={iconSrc} m={3} size="md" />
             <Flex direction="column" justify="center">
               <Text fontSize="md" fontWeight="bold" noOfLines={1}>
                 {title}

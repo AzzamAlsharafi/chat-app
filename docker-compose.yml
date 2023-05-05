@@ -9,7 +9,7 @@ services:
       - backend
 
   backend:
-    image: pocketbase
+    build: ./pocketbase
     ports:
       - "8090:8090"
     volumes:
